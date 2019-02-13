@@ -37,14 +37,14 @@
         <tbody>
           {%for post in posts %}
             <div class="tablediv">
-            <tr class="clickable-row" action= "{% url 'contact-detail' post.id %}">
-              <td>  {{ post.name }} </td>
-              <td>  {{ post.email }} </td>
-              <td> {{ post.sbu }}</td>
-              <td> {{ post.position }}</td>
-              <td> {{ post.status }}</td>
-              <td> {{ post.company }}</td>
-            </tr>
+                <tr class="clickable-row" action= "{% url 'contact-detail' post.id %}">
+                  <td>  {{ post.name }} </td>
+                  <td>  {{ post.email }} </td>
+                  <td> {{ post.sbu }}</td>
+                  <td> {{ post.position }}</td>
+                  <td> {{ post.status }}</td>
+                  <td> {{ post.company }}</td>
+                </tr>
             </div>
         {% endfor %}
         </tbody>
