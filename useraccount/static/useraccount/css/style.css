@@ -3,16 +3,29 @@
 	height:800px
 }
 
+.display-search-total{
+	display: inline-grid;
+}
+
+
+@media screen and (max-width: 1000px){
+		.detail-logo{
+			display: none;
+		}
+
+		.add-logo{
+			display: none;
+		}
+}
+
 @media screen and (max-width: 500px){
 		.carousel-inner img{
 			width: 1000px ;
 			height:300px
 		}
 
-		tbody {
-			width: 10%;
-			height: 80vh;
-
+		table {
+			width: 200px;
 		}
 
 		.confirmdelete{
@@ -25,5 +38,9 @@
 
 		.add-logo{
 			display: none;
+		}
+
+		.display-search-total{
+			display: grid;
 		}
 }
