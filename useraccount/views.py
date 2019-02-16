@@ -3,8 +3,8 @@ from django.contrib import messages
 from .forms import UserRegisterForm
 
 
-def home(request):
-    return render(request, 'useraccount/index.html')
+# def home(request):
+#     return render(request, 'useraccount/index.html')
 
 
 def reghome(request):
