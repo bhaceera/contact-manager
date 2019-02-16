@@ -4,7 +4,7 @@
 }
 
 .display-search-total{
-	display: inline-grid;
+	display: inline;
 }
 
 
@@ -15,6 +15,10 @@
 
 		.add-logo{
 			display: none;
+		}
+
+		#hide{
+			display: hidden;
 		}
 }
 
@@ -43,4 +47,9 @@
 		.display-search-total{
 			display: grid;
 		}
+
+		#hide{
+			display: hidden;
+		}
+}
 }
