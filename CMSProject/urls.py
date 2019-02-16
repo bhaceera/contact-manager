@@ -17,8 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from useraccount import views as useraccount_views
+# from contacts import views
+# from useraccount import views
 
+# if settings.DEBUG:
+#     urlpatterns += patterns('',
 
+    # )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +32,7 @@ urlpatterns = [
     path('', auth_views.LoginView.as_view(template_name='useraccount/index.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='useraccount/logout.html'), name='logout'),
     path('user/', include('contacts.urls')),
+    # path('404/', views.handler404, name="handler404"),
+    # path('500/', views.handler500, name="handler500"),
+
 ]
