@@ -3,9 +3,14 @@
 	height:800px
 }
 
-.display-search-total{
+/* .display-search-total{
 	display: inline;
-}
+} */
+
+/* .table {
+	width:25% !important;
+} */
+
 
 
 @media screen and (max-width: 1000px){
@@ -17,9 +22,10 @@
 			display: none;
 		}
 
-		#hide{
+
+		/* #hide{
 			visibility: hidden;
-		}
+		} */
 }
 
 @media screen and (max-width: 500px){
@@ -44,12 +50,11 @@
 			display: none;
 		}
 
-		.display-search-total{
+		/* .display-search-total{
 			display: grid;
-		}
+		} */
 
-		#hide{
+		/* #hide{
 			visibility: hidden;
-		}
-}
+		} */
 }

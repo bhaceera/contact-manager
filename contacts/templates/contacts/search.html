@@ -17,10 +17,7 @@
             <th> NAME </th>
             <th> EMAIL </th>
             <th> BUSINESS UNIT </th>
-            <th> POSITION </th>
             <th> STATUS </th>
-            <th> COMPANY </th>
-
           </tr>
         </thead>
 
@@ -30,12 +27,18 @@
               <td> <a href="{% url 'contact-detail' post.id %}" style="text-decoration:none"> {{ post.name }} </a></td>
               <td><a href="{% url 'contact-detail' post.id %}" style="text-decoration:none">  {{ post.email }} </a></td>
               <td> {{ post.sbu }}</td>
-              <td> {{ post.position }}</td>
               <td> {{ post.status }}</td>
-              <td> {{ post.company }}</td>
             </tr>
 
         {% endfor %}
+
+        {% if messages %}
+            {%for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                  <h4>  {{ message }} </h4>
+                </div>
+            {% endfor %}
+        {% endif %}
         </tbody>
      </table>
 

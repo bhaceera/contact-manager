@@ -32,6 +32,7 @@ class ContactView(LoginRequiredMixin, ListView):
 def search(request):
     template_name = 'contacts/search.html'
     paginate_by = 12
+    success_message = " CONTACT DELETED SUCCESSFULLY"
     query = request.GET.get("q")
     posts_filter = Contact.objects.filter(
                 Q(name__icontains=query)|
@@ -45,7 +46,12 @@ def search(request):
     context  = {
         'postsfilter': posts_filter,
     }
-    return render(request, 'contacts/search.html', context)
+
+    if posts_filter == "":
+        messages.success(request, success_message)
+    else:
+        return render(request, 'contacts/search.html', context)
+
 
 class TrashView(LoginRequiredMixin, ListView):
     model = Trash
