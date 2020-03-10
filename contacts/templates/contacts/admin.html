@@ -21,7 +21,7 @@
             <button type="submit" class="btn btn-info" aria-label="Left Align"> SEARCH </button>
           </form>
 
-          <!-- <h5 style="color: black"> {{ counts }} </h5> -->
+
       </div>
 
       <table class="table table-hover">
@@ -38,12 +38,12 @@
         <tbody>
           {%for post in posts %}
             <div class="tablediv">
-                  <tr>
-                      <td> <a href="{% url 'contact-detail' post.id %}" style= "text-decoration: none;">{{ post.name }}</a>  </td>
-                      <td> <a href="{% url 'contact-detail' post.id %}" style= "text-decoration: none;"> {{ post.email }}</a>  </td>
-                      <td> {{ post.sbu }}</td>
-                      <td> {{ post.position }}</td>
-                      <td> {{ post.status }}</td>
+                  <tr> 
+                      <td> <a href="{% url 'contact-detail' post.id %}">  {{ post.name }} </a>  </td>
+                      <td>  {{ post.email }}  </td>
+                      <td> {{ post.sbu }}  </td>
+                      <td> {{ post.position }}  </td>
+                      <td> {{ post.status }}  </td>
                   </tr>
             </div>
         {% endfor %}

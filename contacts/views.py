@@ -2,12 +2,12 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
-from .models import Contact, Trash
+from .models import Contact, Customer
 from django.urls import reverse_lazy
-from django.db.models import Q
+from django.db.models import Count, Q
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .forms import ContactForm
-
+from .forms import ContactForm, CustomerForm
+from django.conf import settings
 
 
 def adminview(request):
@@ -16,14 +16,17 @@ def adminview(request):
     }
     return render(request, 'contacts/admin.html', context)
 
-def trashview(request):
-    context  = {
-        'posts': Trash.objects.all()
-    }
-    return render(request, 'contacts/trashadmin.html', context)
+
 
 class ContactView(LoginRequiredMixin, ListView):
     model = Contact
+    template_name = 'contacts/admin.html'
+    context_object_name = 'posts'
+    paginate_by = 12
+
+
+class CustomerView(LoginRequiredMixin, ListView):
+    model = Customer
     template_name = 'contacts/admin.html'
     context_object_name = 'posts'
     paginate_by = 12
@@ -40,7 +43,6 @@ def search(request):
                 Q(status__icontains=query)|
                 Q(sex__icontains=query)|
                 Q(email__icontains=query)|
-                Q(company__icontains=query)|
                 Q(position__icontains=query)
                 ).distinct()
     context  = {
@@ -53,34 +55,33 @@ def search(request):
         return render(request, 'contacts/search.html', context)
 
 
-class TrashView(LoginRequiredMixin, ListView):
-    model = Trash
-    template_name = 'contacts/trashadmin.html'
-    context_object_name = 'posts'
-    paginate_by = 12
-
-
 class ContactDetail(DetailView):
     model = Contact
 
-class TrashDetail(DetailView):
-    model = Trash
+
+class CustomerDetail(DetailView):
+    model = Customer
+
 
 class ContactCreate(LoginRequiredMixin, CreateView):
     model = Contact
-    fields = ['name', 'email', 'phone', 'address', 'sex', 'sbu', 'position', 'status', 'company']
+    fields = ['name', 'email', 'phone', 'address', 'sex', 'sbu', 'position', 'status']
 
-class TrashCreate(LoginRequiredMixin, CreateView):
-    model = Trash
-    fields = ['name', 'email', 'phone', 'address', 'sex', 'sbu', 'position', 'status', 'company']
+
+class CustomerCreate(LoginRequiredMixin, CreateView):
+    model = Customer
+    fields = ['name', 'email', 'phone', 'address', 'sex', 'sbu', 'position', 'company']
+
 
 class ContactUpdate(LoginRequiredMixin, UpdateView):
     model = Contact
-    fields = ['name', 'email', 'phone', 'address', 'sex', 'sbu', 'position', 'status', 'company']
+    fields = ['name', 'email', 'phone', 'address', 'sex', 'sbu', 'position', 'status']
 
-class TrashUpdate(LoginRequiredMixin, UpdateView):
-    model = Trash
-    fields = ['name', 'email', 'phone', 'address', 'sex', 'sbu', 'position', 'status', 'company']
+class CustomerUpdate(LoginRequiredMixin, UpdateView):
+    model = Customer
+    fields = ['name', 'email', 'phone', 'address', 'sex', 'sbu', 'position', 'company']
+
+
 
 class ContactDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Contact
@@ -92,13 +93,13 @@ class ContactDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
         return super(ContactDelete, self).delete(request, *args, **kwargs)
 
 
-class TrashDelete(LoginRequiredMixin, DeleteView):
-    model = Trash
-    success_url = 'trashview'
 
 
-# def handler404(request):
-#     return render(request, '404.html', status=404)
-#
-# def handler500(request):
-#     return render(request, '500.html', status=500)
+class CustomerDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+    model = Customer
+    success_url = reverse_lazy('adminview')
+    success_message = " CONTACT DELETED SUCCESSFULLY"
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(CustomerDelete, self).delete(request, *args, **kwargs)

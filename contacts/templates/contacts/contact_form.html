@@ -33,8 +33,8 @@
             </div>
 
             <div class="form-row">
-              <div class="form-group col-md-6">
-                    {{ form.company|as_crispy_field }}
+              <div class="form-group col-md-4">
+                    {{ form.sbu|as_crispy_field }}
               </div>
               <div class="form-group col-md-6">
                     {{ form.phone|as_crispy_field }}
@@ -42,13 +42,10 @@
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-4">
-                      {{ form.sbu|as_crispy_field }}
-                </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                       {{ form.status|as_crispy_field }}
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                       {{ form.sex|as_crispy_field }}
                 </div>
             </div>

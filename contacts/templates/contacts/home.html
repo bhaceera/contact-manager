@@ -1,0 +1,29 @@
+{% extends "useraccount/base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+
+
+{% block content %}
+
+      {% if messages %}
+          {%for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                <h4>  {{ message }} </h4>
+              </div>
+          {% endfor %}
+      {% endif %}
+
+      <div class="display-search-total">
+          <form  class="navbar-form navbar-left" action="{% url 'search'%}" method="GET" accept-charset="utf-8">
+            <div class="form-group">
+            <input type="text" class="form-control" name="q" value="{{ request.GET.q }}" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-info" aria-label="Left Align"> SEARCH </button>
+          </form>
+
+      </div>
+
+      
+
+
+{% endblock %}

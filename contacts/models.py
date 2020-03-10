@@ -7,7 +7,6 @@ from django.urls import reverse
 class Contact(models.Model):
     MALE = 'Male'
     FEMALE = 'Female'
-    CUSTOMER = 'Customer'
     PARTNER = 'Partner'
     STAFF = 'Staff'
     ADMINISTRATION = 'Administration'
@@ -18,6 +17,7 @@ class Contact(models.Model):
     FINANCE = 'Finance'
     FINATECH = 'Finatech'
     GARDEN = 'Garden Data'
+    SHARED = 'Shared Resource'
     SOCIAL = 'Garden Social Ventures'
     HNI = 'HNI'
     LEGAL = 'Legal'
@@ -27,12 +27,12 @@ class Contact(models.Model):
     VENTURE = 'Venture Garden Group'
     VIGIPAY = 'Vigipay'
     SEX = ( (MALE, 'Male'), (FEMALE, 'Female'), )
-    STATUS = ( (CUSTOMER, 'Customer'), (PARTNER, 'Partner'), (STAFF, 'Staff') )
+    STATUS = ( (PARTNER, 'Partner'), (STAFF, 'Staff'), )
     SBU = ( (ADMINISTRATION, 'Administration'), (AVITECH, 'Avitech'), (DEVOPS, 'Devops'),
             (EDUTECH, 'Edutech'), (ENGINEERING, 'Engineering Operations'), (FINANCE, 'Finance'),
             (FINATECH, 'Finatech'), (GARDEN, 'Garden Data'), (SOCIAL, 'Garden Social Ventures'),
             (HNI, 'HNI'), (LEGAL, 'Legal'), (POWERTECH, 'Powertech'), (PEOPLE, 'People Operations'),
-            (SECURITY,'Security'), (VENTURE, 'Venture Garden Group'), (VIGIPAY,'Vigipay'),
+            (SECURITY,'Security'), (SHARED, 'Shared Resource'), (VENTURE, 'Venture Garden Group'), (VIGIPAY,'Vigipay'),
           )
 
     name = models.CharField(max_length= 30)
@@ -43,7 +43,6 @@ class Contact(models.Model):
     sbu = models.CharField(max_length = 30, choices=SBU, )
     position = models.CharField(max_length = 30)
     status = models.CharField(max_length = 10, choices=STATUS,)
-    company = models.CharField(max_length = 200, null=True)
     # image = models.ImageField(default='key.jpg')
 
 
@@ -54,20 +53,47 @@ class Contact(models.Model):
         return reverse('contact-detail', kwargs={'pk': self.pk})
 
 
-class Trash(models.Model):
+class Customer(models.Model):
+    MALE = 'Male'
+    FEMALE = 'Female'
+    ADMINISTRATION = 'Administration'
+    AVITECH = 'Avitech'
+    DEVOPS = 'Devops'
+    EDUTECH = 'Edutech'
+    ENGINEERING = 'Engineering Operations'
+    FINANCE = 'Finance'
+    FINATECH = 'Finatech'
+    GARDEN = 'Garden Data'
+    SHARED = 'Shared Resource'
+    SOCIAL = 'Garden Social Ventures'
+    HNI = 'HNI'
+    LEGAL = 'Legal'
+    POWERTECH = 'Powertech'
+    PEOPLE = 'People Operations'
+    SECURITY = 'Security'
+    VENTURE = 'Venture Garden Group'
+    VIGIPAY = 'Vigipay'
+    SEX = ( (MALE, 'Male'), (FEMALE, 'Female'), )
+    SBU = ( (ADMINISTRATION, 'Administration'), (AVITECH, 'Avitech'), (DEVOPS, 'Devops'),
+            (EDUTECH, 'Edutech'), (ENGINEERING, 'Engineering Operations'), (FINANCE, 'Finance'),
+            (FINATECH, 'Finatech'), (GARDEN, 'Garden Data'), (SOCIAL, 'Garden Social Ventures'),
+            (HNI, 'HNI'), (LEGAL, 'Legal'), (POWERTECH, 'Powertech'), (PEOPLE, 'People Operations'),
+            (SECURITY,'Security'), (SHARED, 'Shared Resource'), (VENTURE, 'Venture Garden Group'), (VIGIPAY,'Vigipay'),
+          )
+
     name = models.CharField(max_length= 30)
     email = models.EmailField()
     phone = models.CharField(max_length= 12)
-    address = models.TextField(max_length= 200)
-    sex = models.CharField(max_length= 10)
-    sbu = models.CharField(max_length = 30)
+    address = models.CharField(max_length= 200)
+    sex = models.CharField(max_length= 10, choices=SEX, )
+    sbu = models.CharField(max_length = 30, choices=SBU, )
     position = models.CharField(max_length = 30)
-    status = models.CharField(max_length = 10)
     company = models.CharField(max_length = 200, null=True)
+    # image = models.ImageField(default='key.jpg')
 
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('trash-detail', kwargs={'pk': self.pk})
+        return reverse('customer-detail', kwargs={'pk': self.pk})

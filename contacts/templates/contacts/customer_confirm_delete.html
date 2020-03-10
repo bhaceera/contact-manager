@@ -1,0 +1,17 @@
+{% extends "useraccount/base.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="">
+    <form class=""  method="POST" action="{% url 'customer-delete' object.id %}">
+      {% csrf_token %}
+       <h2>Are you sure you want to delete the contact information for "{{ object.name }}"? </h2><br>
+       <div class="confirmdelete">
+           <button type="submit" class="btn btn-danger"> DELETE PERMANENTLY</button>
+           <a href="{% url 'customer-detail' object.id %}" class="btn btn-success"> CANCEL </a>
+           <!-- <a href="{% url 'trash-create' %}" class="btn btn-info"> SEND TO BIN </a> -->
+       </div>
+
+    </form>
+  </div>
+{% endblock %}

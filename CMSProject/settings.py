@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ['127.0.0.1:8000', '.herokuapp.com']
 
 INSTALLED_APPS = [
     'bootstrap3',
+    'chartjs',
     'contacts',
     'crispy_forms',
     'django.contrib.admin',
@@ -160,6 +161,12 @@ STATICFILES_DIRS = (
 )
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'carimbhaceera@gmail.com'
+EMAIL_HOST_PASSWORD = 'basiratkareem'
 
 #Activate django-heroku
 django_heroku.settings(locals())

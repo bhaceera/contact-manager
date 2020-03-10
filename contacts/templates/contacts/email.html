@@ -1,0 +1,12 @@
+{% extends "useraccount/base.html" %}
+{% load static %}
+
+{% block content %}
+
+  <form class="" action="{% url 'emailform' %}" method="post">
+     {% csrf_token %}
+     <textarea name="message" rows="8" cols="80" placeholder="Type your message..."></textarea>
+     <input type="submit">
+  </form>
+
+{% endblock %}
